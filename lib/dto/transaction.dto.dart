@@ -14,3 +14,14 @@ class Transaction with _$Transaction {
   factory Transaction.fromJson(Map<String, Object?> json) =>
       _$TransactionFromJson(json);
 }
+
+@freezed
+class TransactionCreated with _$TransactionCreated {
+  const factory TransactionCreated({
+    required Transaction transaction_details,
+    required String
+        account_details, //TODO: Change string to proper account type
+  }) = _TransactionCreated;
+  factory TransactionCreated.fromJson(Map<String, Object?> json) =>
+      _$TransactionCreatedFromJson(json);
+}

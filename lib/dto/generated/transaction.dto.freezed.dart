@@ -221,3 +221,190 @@ abstract class _Transaction implements Transaction {
   _$$TransactionImplCopyWith<_$TransactionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+TransactionCreated _$TransactionCreatedFromJson(Map<String, dynamic> json) {
+  return _TransactionCreated.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TransactionCreated {
+  Transaction get transaction_details => throw _privateConstructorUsedError;
+  String get account_details => throw _privateConstructorUsedError;
+
+  /// Serializes this TransactionCreated to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of TransactionCreated
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $TransactionCreatedCopyWith<TransactionCreated> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TransactionCreatedCopyWith<$Res> {
+  factory $TransactionCreatedCopyWith(
+          TransactionCreated value, $Res Function(TransactionCreated) then) =
+      _$TransactionCreatedCopyWithImpl<$Res, TransactionCreated>;
+  @useResult
+  $Res call({Transaction transaction_details, String account_details});
+
+  $TransactionCopyWith<$Res> get transaction_details;
+}
+
+/// @nodoc
+class _$TransactionCreatedCopyWithImpl<$Res, $Val extends TransactionCreated>
+    implements $TransactionCreatedCopyWith<$Res> {
+  _$TransactionCreatedCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of TransactionCreated
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transaction_details = null,
+    Object? account_details = null,
+  }) {
+    return _then(_value.copyWith(
+      transaction_details: null == transaction_details
+          ? _value.transaction_details
+          : transaction_details // ignore: cast_nullable_to_non_nullable
+              as Transaction,
+      account_details: null == account_details
+          ? _value.account_details
+          : account_details // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+
+  /// Create a copy of TransactionCreated
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionCopyWith<$Res> get transaction_details {
+    return $TransactionCopyWith<$Res>(_value.transaction_details, (value) {
+      return _then(_value.copyWith(transaction_details: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$TransactionCreatedImplCopyWith<$Res>
+    implements $TransactionCreatedCopyWith<$Res> {
+  factory _$$TransactionCreatedImplCopyWith(_$TransactionCreatedImpl value,
+          $Res Function(_$TransactionCreatedImpl) then) =
+      __$$TransactionCreatedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Transaction transaction_details, String account_details});
+
+  @override
+  $TransactionCopyWith<$Res> get transaction_details;
+}
+
+/// @nodoc
+class __$$TransactionCreatedImplCopyWithImpl<$Res>
+    extends _$TransactionCreatedCopyWithImpl<$Res, _$TransactionCreatedImpl>
+    implements _$$TransactionCreatedImplCopyWith<$Res> {
+  __$$TransactionCreatedImplCopyWithImpl(_$TransactionCreatedImpl _value,
+      $Res Function(_$TransactionCreatedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TransactionCreated
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transaction_details = null,
+    Object? account_details = null,
+  }) {
+    return _then(_$TransactionCreatedImpl(
+      transaction_details: null == transaction_details
+          ? _value.transaction_details
+          : transaction_details // ignore: cast_nullable_to_non_nullable
+              as Transaction,
+      account_details: null == account_details
+          ? _value.account_details
+          : account_details // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TransactionCreatedImpl implements _TransactionCreated {
+  const _$TransactionCreatedImpl(
+      {required this.transaction_details, required this.account_details});
+
+  factory _$TransactionCreatedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TransactionCreatedImplFromJson(json);
+
+  @override
+  final Transaction transaction_details;
+  @override
+  final String account_details;
+
+  @override
+  String toString() {
+    return 'TransactionCreated(transaction_details: $transaction_details, account_details: $account_details)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TransactionCreatedImpl &&
+            (identical(other.transaction_details, transaction_details) ||
+                other.transaction_details == transaction_details) &&
+            (identical(other.account_details, account_details) ||
+                other.account_details == account_details));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, transaction_details, account_details);
+
+  /// Create a copy of TransactionCreated
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TransactionCreatedImplCopyWith<_$TransactionCreatedImpl> get copyWith =>
+      __$$TransactionCreatedImplCopyWithImpl<_$TransactionCreatedImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TransactionCreatedImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TransactionCreated implements TransactionCreated {
+  const factory _TransactionCreated(
+      {required final Transaction transaction_details,
+      required final String account_details}) = _$TransactionCreatedImpl;
+
+  factory _TransactionCreated.fromJson(Map<String, dynamic> json) =
+      _$TransactionCreatedImpl.fromJson;
+
+  @override
+  Transaction get transaction_details;
+  @override
+  String get account_details;
+
+  /// Create a copy of TransactionCreated
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TransactionCreatedImplCopyWith<_$TransactionCreatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
