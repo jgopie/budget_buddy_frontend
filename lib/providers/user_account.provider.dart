@@ -6,4 +6,8 @@ part 'generated/user_account.provider.g.dart';
 class UserAccountInformation extends _$UserAccountInformation {
   @override
   UserAccount? build() => null;
+
+  void update_info(UserAccount account_info) {
+    state = account_info;
+  }
 }

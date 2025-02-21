@@ -7,7 +7,7 @@ part of '../user_account.provider.dart';
 // **************************************************************************
 
 String _$userAccountInformationHash() =>
-    r'85ccee3ca165023bafc7a2203c9d31de78bacacb';
+    r'9eba0d0baccec29b2cc555a2e8f6e1fefb2bdf95';
 
 /// See also [UserAccountInformation].
 @ProviderFor(UserAccountInformation)
