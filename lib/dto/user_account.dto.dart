@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'user_account.dto.freezed.dart';
-part 'user_account.dto.g.dart';
+part 'generated/user_account.dto.freezed.dart';
+part 'generated/user_account.dto.g.dart';
 
 @freezed
 class UserAccount with _$UserAccount {
