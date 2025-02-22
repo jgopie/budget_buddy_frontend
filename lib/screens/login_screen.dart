@@ -1,5 +1,9 @@
+// ignore_for_file: unused_local_variable
+
+import 'package:budget_buddy_frontend/constants.dart';
 import 'package:budget_buddy_frontend/dto/user_account.dto.dart';
 import 'package:budget_buddy_frontend/network_functions/user_account_functions.dart';
+import 'package:budget_buddy_frontend/providers/secure_storage.provider.dart';
 import 'package:budget_buddy_frontend/providers/user_account.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,15 +14,18 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ignore: unused_local_variable
     final account_info = ref.watch(userAccountInformationProvider);
+    final secure_storage = ref.watch(secureStorageProvider);
     final email_controller = TextEditingController();
     final password_controller = TextEditingController();
-    ref.listen(userAccountInformationProvider, (previous, next) {
-      if (next != null) {
-        context.go('/home');
-      }
-    });
+    ref.listen(
+      userAccountInformationProvider,
+      (previous, next) {
+        if (next != null) {
+          context.go('/home');
+        }
+      },
+    );
     return Scaffold(
       body: Center(
         child: Column(
@@ -32,14 +39,23 @@ class LoginScreen extends ConsumerWidget {
             ),
             TextButton(
               onPressed: () async {
-                UserAccount account_info = await login(
-                  UserLogin(
+                try {
+                  UserAccount account_info = await login(
+                    UserLogin(
                       email: email_controller.text,
-                      password: password_controller.text),
-                );
-                ref
-                    .read(userAccountInformationProvider.notifier)
-                    .update_info(account_info);
+                      password: password_controller.text,
+                    ),
+                  );
+                  ref.read(userAccountInformationProvider.notifier).update_info(
+                        account_info,
+                      );
+                  await secure_storage.write(
+                    key: jwt,
+                    value: account_info.token,
+                  );
+                } catch (e) {
+                  print(e.toString());
+                }
               },
               child: Text('Login'),
             ),
