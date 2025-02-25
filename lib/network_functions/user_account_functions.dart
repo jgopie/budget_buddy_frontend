@@ -13,3 +13,14 @@ Future<UserAccount> login(UserLogin login_info) async {
         'Request failed with status code ${response.statusCode}');
   }
 }
+
+Future<UserAccount> autoLogin(String web_token, String email) async {
+  Response response = await dio.post(
+    auto_endpoint,
+    data: {'email': email},
+    options: Options(
+      headers: {"Authorization": "Bearer $web_token"},
+    ),
+  );
+  return UserAccount.fromJson(response.data);
+}

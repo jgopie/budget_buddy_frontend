@@ -1,5 +1,6 @@
 import 'package:budget_buddy_frontend/screens/home.dart';
 import 'package:budget_buddy_frontend/screens/login_screen.dart';
+import 'package:budget_buddy_frontend/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,10 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/',
+      builder: (context, state) => SplashScreen(),
+    ),
+    GoRoute(
+      path: '/login',
       builder: (context, state) => LoginScreen(),
     ),
   ],

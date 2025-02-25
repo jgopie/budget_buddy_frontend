@@ -1,5 +1,6 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:budget_buddy_frontend/components/error_dialog.component.dart';
 import 'package:budget_buddy_frontend/constants.dart';
 import 'package:budget_buddy_frontend/dto/user_account.dto.dart';
 import 'package:budget_buddy_frontend/network_functions/user_account_functions.dart';
@@ -53,8 +54,17 @@ class LoginScreen extends ConsumerWidget {
                     key: jwt,
                     value: account_info.token,
                   );
+                  await secure_storage.write(
+                      key: email, value: email_controller.text);
                 } catch (e) {
-                  print(e.toString());
+                  if (context.mounted) {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ErrorDialog(error: e, title: 'Login Error');
+                      },
+                    );
+                  }
                 }
               },
               child: Text('Login'),
