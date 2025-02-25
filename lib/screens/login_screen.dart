@@ -5,7 +5,7 @@ import 'package:budget_buddy_frontend/constants.dart';
 import 'package:budget_buddy_frontend/dto/user_account.dto.dart';
 import 'package:budget_buddy_frontend/network_functions/user_account_functions.dart';
 import 'package:budget_buddy_frontend/providers/secure_storage.provider.dart';
-import 'package:budget_buddy_frontend/providers/user_account.provider.dart';
+import 'package:budget_buddy_frontend/providers/user_account_information.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

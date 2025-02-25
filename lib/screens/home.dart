@@ -1,4 +1,4 @@
-import 'package:budget_buddy_frontend/providers/user_account.provider.dart';
+import 'package:budget_buddy_frontend/providers/user_account_information.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
