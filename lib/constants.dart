@@ -4,3 +4,4 @@ const jwt = "jwt";
 const auto_endpoint = "/api/autoLogin";
 const email = "email";
 const accounts_endpoint = "/api/accounts";
+const transactions_endpoint = "/api/transactions";

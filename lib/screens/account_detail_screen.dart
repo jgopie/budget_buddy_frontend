@@ -1,3 +1,4 @@
+import 'package:budget_buddy_frontend/components/transaction_list.component.dart';
 import 'package:budget_buddy_frontend/dto/account.dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +20,8 @@ class AccountDetailScreen extends ConsumerWidget {
               Text('Created at: ${account.created_at}'),
               Text('Current Balance: ${account.current_balance}'),
             ],
-          )
+          ),
+          TransactionList(account_id: account.id),
         ],
       ),
     );
