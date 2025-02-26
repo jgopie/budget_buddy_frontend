@@ -3,3 +3,4 @@ const login_endpoint = "/api/login";
 const jwt = "jwt";
 const auto_endpoint = "/api/autoLogin";
 const email = "email";
+const accounts_endpoint = "/api/accounts";

@@ -1,3 +1,5 @@
+import 'package:budget_buddy_frontend/dto/account.dto.dart';
+import 'package:budget_buddy_frontend/screens/account_detail_screen.dart';
 import 'package:budget_buddy_frontend/screens/home.dart';
 import 'package:budget_buddy_frontend/screens/login_screen.dart';
 import 'package:budget_buddy_frontend/screens/splash_screen.dart';
@@ -22,6 +24,16 @@ final _router = GoRouter(
     GoRoute(
       path: '/login',
       builder: (context, state) => LoginScreen(),
+    ),
+    GoRoute(
+      path: '/account_details',
+      builder: (
+        context,
+        state,
+      ) {
+        Account acc = state.extra as Account;
+        return AccountDetailScreen(account: acc);
+      },
     ),
   ],
 );
