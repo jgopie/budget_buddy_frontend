@@ -39,7 +39,7 @@ class AccountListItem extends StatelessWidget {
           ],
         ),
         onTap: () {
-          context.go('/account_details', extra: account);
+          context.push('/account_details', extra: account);
         },
       ),
     );

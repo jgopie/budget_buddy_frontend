@@ -1,3 +1,4 @@
+import 'package:budget_buddy_frontend/components/budget_buddy_appbar.component.dart';
 import 'package:budget_buddy_frontend/components/transaction_list.component.dart';
 import 'package:budget_buddy_frontend/dto/account.dto.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class AccountDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      appBar: BudgetBuddyAppbar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

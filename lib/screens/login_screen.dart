@@ -1,5 +1,6 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:budget_buddy_frontend/components/budget_buddy_appbar.component.dart';
 import 'package:budget_buddy_frontend/components/error_dialog.component.dart';
 import 'package:budget_buddy_frontend/constants.dart';
 import 'package:budget_buddy_frontend/dto/user_account.dto.dart';
@@ -28,6 +29,7 @@ class LoginScreen extends ConsumerWidget {
       },
     );
     return Scaffold(
+      appBar: BudgetBuddyAppbar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
