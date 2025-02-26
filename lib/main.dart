@@ -1,5 +1,6 @@
 import 'package:budget_buddy_frontend/dto/account.dto.dart';
 import 'package:budget_buddy_frontend/screens/account_detail_screen.dart';
+import 'package:budget_buddy_frontend/screens/add_account_screen.dart';
 import 'package:budget_buddy_frontend/screens/home.dart';
 import 'package:budget_buddy_frontend/screens/login_screen.dart';
 import 'package:budget_buddy_frontend/screens/splash_screen.dart';
@@ -34,6 +35,10 @@ final _router = GoRouter(
         Account acc = state.extra as Account;
         return AccountDetailScreen(account: acc);
       },
+    ),
+    GoRoute(
+      path: '/add_account',
+      builder: (context, state) => AddAccountScreen(),
     ),
   ],
 );

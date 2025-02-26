@@ -27,3 +27,19 @@ Map<String, dynamic> _$$AccountImplToJson(_$AccountImpl instance) =>
       'created_at': instance.created_at.toIso8601String(),
       'updated_at': instance.updated_at.toIso8601String(),
     };
+
+_$AddAccountImpl _$$AddAccountImplFromJson(Map<String, dynamic> json) =>
+    _$AddAccountImpl(
+      account_name: json['account_name'] as String,
+      current_balance: (json['current_balance'] as num).toDouble(),
+      account_type: json['account_type'] as String,
+      user_id: json['user_id'] as String,
+    );
+
+Map<String, dynamic> _$$AddAccountImplToJson(_$AddAccountImpl instance) =>
+    <String, dynamic>{
+      'account_name': instance.account_name,
+      'current_balance': instance.current_balance,
+      'account_type': instance.account_type,
+      'user_id': instance.user_id,
+    };

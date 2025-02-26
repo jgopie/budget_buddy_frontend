@@ -39,4 +39,21 @@ class Accounts extends _$Accounts {
       state = accounts;
     }
   }
+
+  Future<void> addAccount(AddAccount new_account_info) async {
+    FlutterSecureStorage secure_storage = ref.watch(secureStorageProvider);
+    String? token = await secure_storage.read(key: jwt);
+    String? stored_email = await secure_storage.read(key: email);
+    if (token == null || stored_email == null) {
+      return Future.error('Token or Email is null');
+    }
+    Response response = await dio.post(
+      accounts_endpoint,
+      data: new_account_info.toJson(),
+      options: Options(headers: {"Authorization": "Bearer $token"}),
+    );
+    if (response.statusCode == 200) {
+      return fetchAccounts();
+    }
+  }
 }
