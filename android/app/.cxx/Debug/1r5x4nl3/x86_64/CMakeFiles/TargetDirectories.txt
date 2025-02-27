@@ -1,0 +1,2 @@
+E:/VS Code/Professional Projects/budget_buddy_frontend/android/app/.cxx/Debug/1r5x4nl3/x86_64/CMakeFiles/edit_cache.dir
+E:/VS Code/Professional Projects/budget_buddy_frontend/android/app/.cxx/Debug/1r5x4nl3/x86_64/CMakeFiles/rebuild_cache.dir
