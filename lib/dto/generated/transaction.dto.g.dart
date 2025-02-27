@@ -12,6 +12,7 @@ _$TransactionImpl _$$TransactionImplFromJson(Map<String, dynamic> json) =>
       created_at: DateTime.parse(json['created_at'] as String),
       account_id: json['account_id'] as String,
       amount: (json['amount'] as num).toDouble(),
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$$TransactionImplToJson(_$TransactionImpl instance) =>
@@ -20,6 +21,7 @@ Map<String, dynamic> _$$TransactionImplToJson(_$TransactionImpl instance) =>
       'created_at': instance.created_at.toIso8601String(),
       'account_id': instance.account_id,
       'amount': instance.amount,
+      'description': instance.description,
     };
 
 _$TransactionCreatedImpl _$$TransactionCreatedImplFromJson(

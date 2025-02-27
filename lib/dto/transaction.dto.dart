@@ -10,6 +10,7 @@ class Transaction with _$Transaction {
     required DateTime created_at,
     required String account_id,
     required double amount,
+    String? description,
   }) = _Transaction;
   factory Transaction.fromJson(Map<String, Object?> json) =>
       _$TransactionFromJson(json);

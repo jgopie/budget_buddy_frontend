@@ -24,6 +24,7 @@ mixin _$Transaction {
   DateTime get created_at => throw _privateConstructorUsedError;
   String get account_id => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   /// Serializes this Transaction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +42,12 @@ abstract class $TransactionCopyWith<$Res> {
           Transaction value, $Res Function(Transaction) then) =
       _$TransactionCopyWithImpl<$Res, Transaction>;
   @useResult
-  $Res call({String id, DateTime created_at, String account_id, double amount});
+  $Res call(
+      {String id,
+      DateTime created_at,
+      String account_id,
+      double amount,
+      String? description});
 }
 
 /// @nodoc
@@ -63,6 +69,7 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
     Object? created_at = null,
     Object? account_id = null,
     Object? amount = null,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -81,6 +88,10 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -93,7 +104,12 @@ abstract class _$$TransactionImplCopyWith<$Res>
       __$$TransactionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, DateTime created_at, String account_id, double amount});
+  $Res call(
+      {String id,
+      DateTime created_at,
+      String account_id,
+      double amount,
+      String? description});
 }
 
 /// @nodoc
@@ -113,6 +129,7 @@ class __$$TransactionImplCopyWithImpl<$Res>
     Object? created_at = null,
     Object? account_id = null,
     Object? amount = null,
+    Object? description = freezed,
   }) {
     return _then(_$TransactionImpl(
       id: null == id
@@ -131,6 +148,10 @@ class __$$TransactionImplCopyWithImpl<$Res>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -142,7 +163,8 @@ class _$TransactionImpl implements _Transaction {
       {required this.id,
       required this.created_at,
       required this.account_id,
-      required this.amount});
+      required this.amount,
+      this.description});
 
   factory _$TransactionImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransactionImplFromJson(json);
@@ -155,10 +177,12 @@ class _$TransactionImpl implements _Transaction {
   final String account_id;
   @override
   final double amount;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'Transaction(id: $id, created_at: $created_at, account_id: $account_id, amount: $amount)';
+    return 'Transaction(id: $id, created_at: $created_at, account_id: $account_id, amount: $amount, description: $description)';
   }
 
   @override
@@ -171,13 +195,15 @@ class _$TransactionImpl implements _Transaction {
                 other.created_at == created_at) &&
             (identical(other.account_id, account_id) ||
                 other.account_id == account_id) &&
-            (identical(other.amount, amount) || other.amount == amount));
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, created_at, account_id, amount);
+      Object.hash(runtimeType, id, created_at, account_id, amount, description);
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.
@@ -200,7 +226,8 @@ abstract class _Transaction implements Transaction {
       {required final String id,
       required final DateTime created_at,
       required final String account_id,
-      required final double amount}) = _$TransactionImpl;
+      required final double amount,
+      final String? description}) = _$TransactionImpl;
 
   factory _Transaction.fromJson(Map<String, dynamic> json) =
       _$TransactionImpl.fromJson;
@@ -213,6 +240,8 @@ abstract class _Transaction implements Transaction {
   String get account_id;
   @override
   double get amount;
+  @override
+  String? get description;
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.
