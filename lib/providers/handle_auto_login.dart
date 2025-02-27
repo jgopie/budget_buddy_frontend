@@ -1,4 +1,4 @@
-import 'package:budget_buddy_frontend/constants.dart';
+import 'package:budget_buddy_frontend/dto/auth_info.dart';
 import 'package:budget_buddy_frontend/dto/user_account.dto.dart';
 import 'package:budget_buddy_frontend/network_functions/user_account_functions.dart';
 import 'package:budget_buddy_frontend/providers/secure_storage.provider.dart';
@@ -9,14 +9,15 @@ part 'generated/handle_auto_login.g.dart';
 
 @riverpod
 Future<UserAccount> handleAutoLogin(Ref ref) async {
-  final secure_storage = ref.watch(secureStorageProvider);
   try {
-    final token = await secure_storage.read(key: jwt);
-    final stored_email = await secure_storage.read(key: email);
-    if (token == null || stored_email == null) {
-      return Future.error('Token or Email is null');
+    AuthInfo auth_info;
+    try {
+      auth_info = await ref.watch(secureStorageProvider.notifier).getAuthInfo();
+    } catch (e) {
+      return Future.error(e);
     }
-    UserAccount account_info = await autoLogin(token, stored_email);
+    UserAccount account_info =
+        await autoLogin(auth_info.token, auth_info.email);
     ref
         .watch(userAccountInformationProvider.notifier)
         .update_info(account_info);

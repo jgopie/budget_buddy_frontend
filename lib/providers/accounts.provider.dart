@@ -1,10 +1,10 @@
 import 'package:budget_buddy_frontend/constants.dart';
 import 'package:budget_buddy_frontend/dto/account.dto.dart';
+import 'package:budget_buddy_frontend/dto/auth_info.dart';
 import 'package:budget_buddy_frontend/network_functions/base_options.dart';
 import 'package:budget_buddy_frontend/providers/secure_storage.provider.dart';
 import 'package:budget_buddy_frontend/providers/user_account_information.provider.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'generated/accounts.provider.g.dart';
 
@@ -16,17 +16,18 @@ class Accounts extends _$Accounts {
   }
 
   Future<void> fetchAccounts() async {
-    FlutterSecureStorage secure_storage = ref.watch(secureStorageProvider);
-    String? token = await secure_storage.read(key: jwt);
-    String? stored_email = await secure_storage.read(key: email);
-    String userId = ref.watch(userAccountInformationProvider)!.id;
-    if (token == null || stored_email == null) {
-      return Future.error('Token or Email is null');
+    AuthInfo auth_info;
+    try {
+      auth_info = await ref.watch(secureStorageProvider.notifier).getAuthInfo();
+    } catch (e) {
+      return Future.error(e);
     }
+    String userId = ref.watch(userAccountInformationProvider)!.id;
+
     Response response = await dio.get(
       '$accounts_endpoint/$userId',
       options: Options(
-        headers: {"Authorization": "Bearer $token"},
+        headers: {"Authorization": "Bearer ${auth_info.token}"},
       ),
     );
     if (response.statusCode == 200) {
@@ -41,19 +42,21 @@ class Accounts extends _$Accounts {
   }
 
   Future<void> addAccount(AddAccount new_account_info) async {
-    FlutterSecureStorage secure_storage = ref.watch(secureStorageProvider);
-    String? token = await secure_storage.read(key: jwt);
-    String? stored_email = await secure_storage.read(key: email);
-    if (token == null || stored_email == null) {
-      return Future.error('Token or Email is null');
+    AuthInfo auth_info;
+    try {
+      auth_info = await ref.watch(secureStorageProvider.notifier).getAuthInfo();
+    } catch (e) {
+      return Future.error(e);
     }
     Response response = await dio.post(
       accounts_endpoint,
       data: new_account_info.toJson(),
-      options: Options(headers: {"Authorization": "Bearer $token"}),
+      options: Options(headers: {"Authorization": "Bearer ${auth_info.token}"}),
     );
     if (response.statusCode == 200) {
       return fetchAccounts();
     }
   }
+
+  Future<void> deleteAccount(String account_id) async {}
 }
