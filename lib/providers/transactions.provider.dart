@@ -36,4 +36,23 @@ class Transactions extends _$Transactions {
       state = transactions;
     }
   }
+
+  Future<void> addTransaction(AddTransaction new_transaction) async {
+    AuthInfo auth_info;
+    try {
+      auth_info = await ref.watch(secureStorageProvider.notifier).getAuthInfo();
+    } catch (e) {
+      return Future.error(e);
+    }
+    Response response = await dio.post(
+      transactions_endpoint,
+      options: Options(
+        headers: {"Authorization": "Beater ${auth_info.token}"},
+      ),
+      data: new_transaction,
+    );
+    if (response.statusCode == 200) {
+      return getTransactions(new_transaction.account_id);
+    }
+  }
 }

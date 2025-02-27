@@ -26,3 +26,15 @@ class TransactionCreated with _$TransactionCreated {
   factory TransactionCreated.fromJson(Map<String, Object?> json) =>
       _$TransactionCreatedFromJson(json);
 }
+
+@freezed
+class AddTransaction with _$AddTransaction {
+  const factory AddTransaction({
+    required String user_id,
+    required String account_id,
+    required double amount,
+    required String description,
+  }) = _AddTransaction;
+  factory AddTransaction.fromJson(Map<String, Object?> json) =>
+      _$AddTransactionFromJson(json);
+}

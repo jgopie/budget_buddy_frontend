@@ -38,3 +38,20 @@ Map<String, dynamic> _$$TransactionCreatedImplToJson(
       'transaction_details': instance.transaction_details,
       'account_details': instance.account_details,
     };
+
+_$AddTransactionImpl _$$AddTransactionImplFromJson(Map<String, dynamic> json) =>
+    _$AddTransactionImpl(
+      user_id: json['user_id'] as String,
+      account_id: json['account_id'] as String,
+      amount: (json['amount'] as num).toDouble(),
+      description: json['description'] as String,
+    );
+
+Map<String, dynamic> _$$AddTransactionImplToJson(
+        _$AddTransactionImpl instance) =>
+    <String, dynamic>{
+      'user_id': instance.user_id,
+      'account_id': instance.account_id,
+      'amount': instance.amount,
+      'description': instance.description,
+    };
