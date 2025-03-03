@@ -4,6 +4,7 @@ import 'package:budget_buddy_frontend/providers/transactions.provider.dart';
 import 'package:budget_buddy_frontend/providers/user_account_information.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class AddTransactionScreen extends ConsumerStatefulWidget {
   const AddTransactionScreen({super.key, required this.account_id});
@@ -57,6 +58,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
               ref
                   .read(transactionsProvider.notifier)
                   .addTransaction(new_transaction);
+              context.pop();
             },
             child: Text('Add Transaction'),
           ),

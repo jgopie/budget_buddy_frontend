@@ -1,6 +1,7 @@
 import 'package:budget_buddy_frontend/components/budget_buddy_appbar.component.dart';
 import 'package:budget_buddy_frontend/components/transaction_list.component.dart';
 import 'package:budget_buddy_frontend/dto/account.dto.dart';
+import 'package:budget_buddy_frontend/providers/accounts.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +15,8 @@ class AccountDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final f = DateFormat('d/M/y');
     final formatted_date = f.format(account.created_at);
+    final account_balance =
+        ref.watch(accountsProvider.notifier).getAccountBalance(account.id);
     return Scaffold(
       appBar: BudgetBuddyAppbar(),
       body: Column(
@@ -27,7 +30,7 @@ class AccountDetailScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Created at: $formatted_date'),
-              Text('Current Balance: ${account.current_balance}'),
+              Text('Current Balance: \$${account_balance.toStringAsFixed(2)}'),
             ],
           ),
           IconButton(

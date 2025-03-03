@@ -59,4 +59,13 @@ class Accounts extends _$Accounts {
   }
 
   Future<void> deleteAccount(String account_id) async {}
+
+  double getAccountBalance(String account_id) {
+    for (int i = 0; i < state.length; i++) {
+      if (state[i].id == account_id) {
+        return state[i].current_balance;
+      }
+    }
+    return 0.0;
+  }
 }
