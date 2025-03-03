@@ -1,3 +1,4 @@
+import 'package:budget_buddy_frontend/apptheme.dart';
 import 'package:budget_buddy_frontend/dto/account.dto.dart';
 import 'package:budget_buddy_frontend/screens/account_detail_screen.dart';
 import 'package:budget_buddy_frontend/screens/add_account_screen.dart';
@@ -58,6 +59,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: _router,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
     );
   }
 }

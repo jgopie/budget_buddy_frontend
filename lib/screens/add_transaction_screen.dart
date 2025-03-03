@@ -1,4 +1,7 @@
 import 'package:budget_buddy_frontend/components/budget_buddy_appbar.component.dart';
+import 'package:budget_buddy_frontend/dto/transaction.dto.dart';
+import 'package:budget_buddy_frontend/providers/transactions.provider.dart';
+import 'package:budget_buddy_frontend/providers/user_account_information.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -42,6 +45,20 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
           TextField(
             controller: _description_controller,
             decoration: InputDecoration(labelText: 'Description'),
+          ),
+          TextButton(
+            onPressed: () {
+              AddTransaction new_transaction = AddTransaction(
+                user_id: ref.watch(userAccountInformationProvider)!.id,
+                account_id: widget.account_id,
+                amount: double.parse(_amount_controller.text),
+                description: _description_controller.text,
+              );
+              ref
+                  .read(transactionsProvider.notifier)
+                  .addTransaction(new_transaction);
+            },
+            child: Text('Add Transaction'),
           ),
         ],
       ),

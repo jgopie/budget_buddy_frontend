@@ -47,9 +47,9 @@ class Transactions extends _$Transactions {
     Response response = await dio.post(
       transactions_endpoint,
       options: Options(
-        headers: {"Authorization": "Beater ${auth_info.token}"},
+        headers: {"Authorization": "Bearer ${auth_info.token}"},
       ),
-      data: new_transaction,
+      data: new_transaction.toJson(),
     );
     if (response.statusCode == 200) {
       return getTransactions(new_transaction.account_id);
