@@ -53,11 +53,24 @@ final _router = GoRouter(
   ],
 );
 
-class MainApp extends ConsumerWidget {
+class MainApp extends ConsumerStatefulWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends ConsumerState<MainApp> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      ref.read(themeProvider.notifier).loadTheme();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = ref.watch(themeProvider);
     return MaterialApp.router(
       routerConfig: _router,
