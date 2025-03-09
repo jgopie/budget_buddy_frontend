@@ -5,6 +5,7 @@ import 'package:budget_buddy_frontend/network_functions/base_options.dart';
 import 'package:budget_buddy_frontend/providers/secure_storage.provider.dart';
 import 'package:budget_buddy_frontend/providers/user_account_information.provider.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'generated/accounts.provider.g.dart';
 
@@ -58,7 +59,28 @@ class Accounts extends _$Accounts {
     }
   }
 
-  Future<void> deleteAccount(String account_id) async {}
+  Future<void> deleteAccount(String account_id) async {
+    AuthInfo auth_info;
+    try {
+      auth_info = await ref.watch(secureStorageProvider.notifier).getAuthInfo();
+    } catch (e) {
+      return Future.error(e);
+    }
+    String user_id = ref.watch(userAccountInformationProvider)!.id;
+    Response response = await dio.delete(
+      accounts_endpoint,
+      data: {
+        "user_id": user_id,
+        "account_id": account_id,
+      },
+      options: Options(
+        headers: {"Authorization": "Bearer ${auth_info.token}"},
+      ),
+    );
+    if (response.statusCode != 204) {
+      debugPrint('Error deleting account');
+    }
+  }
 
   double getAccountBalance(String account_id) {
     for (int i = 0; i < state.length; i++) {

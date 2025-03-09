@@ -1,5 +1,6 @@
 import 'package:budget_buddy_frontend/apptheme.dart';
 import 'package:budget_buddy_frontend/dto/account.dto.dart';
+import 'package:budget_buddy_frontend/providers/theme_mode.provider.dart';
 import 'package:budget_buddy_frontend/screens/account_detail_screen.dart';
 import 'package:budget_buddy_frontend/screens/add_account_screen.dart';
 import 'package:budget_buddy_frontend/screens/add_transaction_screen.dart';
@@ -52,16 +53,17 @@ final _router = GoRouter(
   ],
 );
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
     return MaterialApp.router(
       routerConfig: _router,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: theme,
     );
   }
 }

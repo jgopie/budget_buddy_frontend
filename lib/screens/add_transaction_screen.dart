@@ -33,36 +33,55 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BudgetBuddyAppbar(),
-      body: Column(
-        children: [
-          TextField(
-            controller: _amount_controller,
-            decoration: InputDecoration(labelText: 'Amount'),
-          ),
-          TextField(
-            controller: _description_controller,
-            decoration: InputDecoration(labelText: 'Description'),
-          ),
-          TextButton(
-            onPressed: () {
-              AddTransaction new_transaction = AddTransaction(
-                user_id: ref.watch(userAccountInformationProvider)!.id,
-                account_id: widget.account_id,
-                amount: double.parse(_amount_controller.text),
-                description: _description_controller.text,
-              );
-              ref
-                  .read(transactionsProvider.notifier)
-                  .addTransaction(new_transaction);
-              context.pop();
-            },
-            child: Text('Add Transaction'),
-          ),
-        ],
+      body: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            TextFormField(
+              controller: _amount_controller,
+              decoration: InputDecoration(labelText: 'Amount'),
+              validator: (value) {
+                if (double.tryParse(value!) == null) {
+                  return 'Please enter a valid number';
+                }
+                return null;
+              },
+              autovalidateMode: AutovalidateMode.onUnfocus,
+            ),
+            TextFormField(
+              controller: _description_controller,
+              decoration: InputDecoration(labelText: 'Description'),
+            ),
+            TextButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Invalid Input'),
+                    ),
+                  );
+                }
+                AddTransaction new_transaction = AddTransaction(
+                  user_id: ref.watch(userAccountInformationProvider)!.id,
+                  account_id: widget.account_id,
+                  amount: double.parse(_amount_controller.text),
+                  description: _description_controller.text,
+                );
+                ref
+                    .read(transactionsProvider.notifier)
+                    .addTransaction(new_transaction);
+                context.pop();
+              },
+              child: Text('Add Transaction'),
+            ),
+          ],
+        ),
       ),
     );
   }
